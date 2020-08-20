@@ -1,35 +1,27 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import MapView from 'react-native-map-clustering'
-import { Marker } from 'react-native-maps';
+import Loading from './Loading';
+import * as Location from 'expo-location';
+import {Alert} from 'react-native';
 
-const initialRegion = {
-  latitude: 37.1544583,
-  longitude: 127.1738472,
-  latitudeDelta: 0.25,
-  longitudeDelta: 0.15
-};
-
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <MapView style = {styles.map} initialRegion = {initialRegion}>
-        <Marker coordinate = {{latitude: 37.1544583, longitude: 127.1738472}}></Marker>
-        <Marker coordinate = {{latitude: 37.1298388, longitude: 127.1738472}}></Marker>
-        <Marker coordinate = {{latitude: 37.1298388, longitude: 127.1738472}}></Marker>
-        <Marker coordinate = {{latitude: 37.1291231, longitude: 127.1738472}}></Marker>
-        <Marker coordinate = {{latitude: 37.1212313, longitude: 127.1738472}}></Marker>
-       </MapView>
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1}
-    ,
-  map: {
-    width: "100%",
-    height: "100%"
+export default class extends React.Component {
+  getLocation = async () => {
+    state = {
+      isLoading: true
+    };
+    try{
+      await Location.requestPermissionsAsync();
+      const {coords: {latitude, longitude}} = await Location.getCurrentPositionAsync();
+      this.setState({ isLoading: false})
+    }
+    catch (error) {
+     Alert.alert(`Can't find you😅😅`)
+    }
+    };
+  componentDidMount() {
+    this.getLocation();
   }
-});
+  render() {
+    const {isLoading} = this.state;
+    return isLoading ? <Loading /> : null;
+  }
+}
