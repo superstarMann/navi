@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, Image} from 'react-native';
 export default function Loading() {
     return(
     <View style = {styles.container}>
-         <Text stlye = {styles.text}>Here is Racists!🤬🤬</Text>
+         <Text stlye = {styles.text}>Here is Racists!🤣🤣</Text>
          <Image style = {{width: `50%`, height: `50%`, resizeMode: `contain`}} source = {require(`./LoadingPicture.jpg`)}/>
     </View>
     );

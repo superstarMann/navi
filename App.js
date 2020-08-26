@@ -3,7 +3,7 @@ import Loading from './Loading';
 import * as Location from 'expo-location';
 import {Alert} from 'react-native';
 import axios from 'axios';
-import Map from './Map';
+import ApfelMap from './CurrentMap';
 
 const API_KEY = "a84dbb1bdb826d311d32c3afb52873ce";
 export default class extends React.Component {
@@ -33,6 +33,6 @@ export default class extends React.Component {
   }
   render() {
     const {isLoading, lon} = this.state;
-    return isLoading ? <Loading /> : <Map lon={lon}/>;
+    return isLoading ? <Loading /> : <ApfelMap lon={lon}/>;
   }
 }

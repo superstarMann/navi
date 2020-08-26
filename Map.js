@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import PropTypes from "prop-types";
 
-export default function Map({ lon}) {
+export default function Map({lon}) {
   return (
     <View style={styles.container}>
       <Text>{lon}</Text>
